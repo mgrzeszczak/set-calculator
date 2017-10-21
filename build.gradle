@@ -1,6 +1,16 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.github.jengelman.gradle.plugins:shadow:2.0.1'
+    }
+}
+
 group 'com.github.mgrzeszczak'
 version '1.0'
 
+apply plugin: 'com.github.johnrengelman.shadow'
 apply plugin: 'java'
 apply plugin: 'antlr'
 
@@ -18,7 +28,7 @@ dependencies {
 }
 
 generateGrammarSource {
-    arguments += ["-package", "com.github.mgrzeszczak.setsgrammar", '-visitor', '-no-listener']
+    arguments += ["-package", "com.github.mgrzeszczak.setcalculator", '-visitor', '-no-listener']
 }
 
 task compileGrammar() {
@@ -27,8 +37,19 @@ task compileGrammar() {
 
 task copyToPackage(type: Copy) {
     from 'build/generated-src/antlr/main'
-    into 'build/generated-src/antlr/main/com/github/mgrzeszczak/setsgrammar'
+    into 'build/generated-src/antlr/main/com/github/mgrzeszczak/setcalculator'
 }
 compileGrammar.dependsOn generateGrammarSource
 compileGrammar.dependsOn copyToPackage
 copyToPackage.mustRunAfter generateGrammarSource
+
+build.dependsOn compileGrammar
+
+jar {
+    manifest {
+        attributes(
+                'Class-Path': configurations.compile.collect { it.getName() }.join(' '),
+                'Main-Class': 'com.github.mgrzeszczak.setcalculator.App'
+        )
+    }
+}

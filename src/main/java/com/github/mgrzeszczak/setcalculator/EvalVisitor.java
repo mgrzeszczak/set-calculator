@@ -1,9 +1,9 @@
-package com.github.mgrzeszczak.setsgrammar;
+package com.github.mgrzeszczak.setcalculator;
 
 import java.util.HashSet;
 import java.util.Set;
 
-public class EvalVisitor extends com.github.mgrzeszczak.setsgrammar.SetsBaseVisitor<MathSet<Integer>> {
+public class EvalVisitor extends com.github.mgrzeszczak.setcalculator.SetsBaseVisitor<MathSet<Integer>> {
 
     @Override
     public MathSet<Integer> visitExpr(SetsParser.ExprContext ctx) {

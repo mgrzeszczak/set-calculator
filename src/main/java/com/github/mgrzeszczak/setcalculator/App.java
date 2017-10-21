@@ -1,4 +1,4 @@
-package com.github.mgrzeszczak.setsgrammar;
+package com.github.mgrzeszczak.setcalculator;
 
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.CommonTokenStream;

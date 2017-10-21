@@ -1,4 +1,4 @@
-package com.github.mgrzeszczak.setsgrammar;
+package com.github.mgrzeszczak.setcalculator;
 
 import java.util.Set;
 import java.util.stream.Collectors;
